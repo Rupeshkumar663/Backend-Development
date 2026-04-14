@@ -1,6 +1,8 @@
 //const express = require('express')//common.js-sync
 import express from "express";//module.js-async
 import dotenv from "dotenv"
+import { client } from "./models/redis/Redis";
+
 dotenv.config();
 const app = express()
 const port=process.env.PORT
