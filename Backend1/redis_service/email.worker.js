@@ -1,4 +1,4 @@
-import { Worker, QueueScheduler } from "bullmq";
+import { Worker, QueueScheduler } from "bullmq";//bull MQ
 import connection from "../config/redis.js";
 import dlqQueue from "../queues/dlq.queue.js";
 
@@ -12,11 +12,6 @@ const emailWorker=new Worker(
     if(!to){
       throw new Error("Email missing");
     }
-
-    if(Math.random()<0.3){
-      throw new Error("SMTP failed");
-    }
-
     console.log(`Email sent to ${to} with subject "${subject}"`);
   },
 
