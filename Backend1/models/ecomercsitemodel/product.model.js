@@ -28,6 +28,9 @@ const productSchema=mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true,
+    },
+    wifename:{
+        type:String
     }
 
 },{Timestamps:true})
