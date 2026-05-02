@@ -29,6 +29,7 @@ export const updatepost=async(req,res)=>{
             id:Number(postId)//userid=1
          },
          data:{
+            
             user_id:Number(user_id),
             title,
             description
@@ -58,7 +59,15 @@ export const getpost=async(req,res)=>{
 
 export const getallpost=async(req,res)=>{
    try {
-       const data=await prisma.post.findMany({})
+       const data=await prisma.post.findMany({
+         include:{
+            comment:{
+               include:{
+                  user:true
+               }
+            }
+         }
+       })
         return res.status(200).json({message:"data fetch successfully",data})
    } catch(error){
        console.log(error)
