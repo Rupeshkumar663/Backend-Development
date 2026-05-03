@@ -57,7 +57,7 @@ export const getpost=async(req,res)=>{
    }
 }
 
-export const getallpost=async(req,res)=>{
+/*export const getallpost=async(req,res)=>{
    try {
        const data=await prisma.post.findMany({
          include:{
@@ -66,6 +66,184 @@ export const getallpost=async(req,res)=>{
                   user:true
                }
             }
+         }
+       })
+        return res.status(200).json({message:"data fetch successfully",data})
+   } catch(error){
+       console.log(error)
+       return res.status(201).json({message:"server error",error});
+   }
+}
+ */
+/*export const getallpost=async(req,res)=>{
+   try {
+       const data=await prisma.post.findMany({
+         include:{
+            comment:{
+               include:{
+                  user:{
+                     select:{
+                        name:true
+                     }
+                  }
+               }
+            }
+         },
+         orderBy:{
+            id:"desc"
+         },
+         where:{
+            comment_count:{
+               gt:6
+            }
+         }
+       })
+        return res.status(200).json({message:"data fetch successfully",data})
+   } catch(error){
+       console.log(error)
+       return res.status(201).json({message:"server error",error});
+   }
+}
+ */
+/*
+export const getallpost=async(req,res)=>{
+   try {
+       const data=await prisma.post.findMany({
+         include:{
+            comment:{
+               include:{
+                  user:{
+                     select:{
+                        name:true
+                     }
+                  }
+               }
+            }
+         },
+         orderBy:{
+            id:"desc"
+         },
+         where:{
+            title:{
+            startwith:"web",
+               endsWith:"Indian",
+               equals:"Dubai"
+            }
+         }
+       })
+        return res.status(200).json({message:"data fetch successfully",data})
+   } catch(error){
+       console.log(error)
+       return res.status(201).json({message:"server error",error});
+   }
+} */
+/*
+
+export const getallpost=async(req,res)=>{
+   try {
+       const data=await prisma.post.findMany({
+         include:{
+            comment:{
+               include:{
+                  user:{
+                     select:{
+                        name:true
+                     }
+                  }
+               }
+            }
+         },
+         orderBy:{
+            id:"desc"
+         },
+         where:{
+            OR:[
+               {
+                 title:{
+                  startsWith:"web"
+                 }
+               },
+               {
+                 title:{
+                  endsWith:"Indian"
+                 }
+               }
+            ]
+         }
+       })
+        return res.status(200).json({message:"data fetch successfully",data})
+   } catch(error){
+       console.log(error)
+       return res.status(201).json({message:"server error",error});
+   }
+}
+*/
+
+/*
+export const getallpost=async(req,res)=>{
+   try {
+       const data=await prisma.post.findMany({
+         include:{
+            comment:{
+               include:{
+                  user:{
+                     select:{
+                        name:true
+                     }
+                  }
+               }
+            }
+         },
+         orderBy:{
+            id:"desc"
+         },
+         where:{
+            AND:[
+               {
+                 title:{
+                  startsWith:"web"
+                 }
+               },
+               {
+                 title:{
+                  endsWith:"Indian"
+                 }
+               }
+            ]
+         }
+       })
+        return res.status(200).json({message:"data fetch successfully",data})
+   } catch(error){
+       console.log(error)
+       return res.status(201).json({message:"server error",error});
+   }
+}*/
+
+export const getallpost=async(req,res)=>{
+   try {
+       const data=await prisma.post.findMany({
+         include:{
+            comment:{
+               include:{
+                  user:{
+                     select:{
+                        name:true
+                     }
+                  }
+               }
+            }
+         },
+         orderBy:{
+            id:"desc"
+         },
+         where:{
+            NOT:[
+               {
+                 title:{
+                  startsWith:"web"
+                 }
+               }
+            ]
          }
        })
         return res.status(200).json({message:"data fetch successfully",data})

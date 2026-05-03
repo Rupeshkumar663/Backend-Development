@@ -3,6 +3,16 @@ import prisma from "../db.js"
 export const createcomment=async(req,res)=>{
    try{
      const {user_id,post_id,comment}=req.body
+     await prisma.post.update({
+      where:{
+         id:Number(post_id)
+      },
+      data:{
+         comment_count:{
+            increment:1
+         }
+      }
+     })
     
      const newcomment=await prisma.comment.create({
         data:{
@@ -66,6 +76,16 @@ export const getallcomment=async(req,res)=>{
 export const commentdelete=async(req,res)=>{
    try {
        const commentId=req.params.id
+        await prisma.post.update({
+      where:{
+         id:Number(post_id)
+      },
+      data:{
+         comment_count:{
+            decrement:1
+         }
+      }
+     })
        await prisma.comment.delete({
          where:{
             id:String(commentId)
